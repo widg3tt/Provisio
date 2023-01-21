@@ -15,7 +15,7 @@
 		class="navbarButton" href="ContactUs.jsp">Contact Us</a> <a
 		class="navbarButton" href="Locations.jsp">Locations</a> <a
 		class="navbarButton" href="Registration.jsp">Register</a> <a
-		class="navbarButton" href="Booking.jsp">Booking</a> <a
+		class="navbarButton" href="Reservation.jsp">Booking</a> <a
 		class="navbarButton" href="LookUp.jsp">Reservation LookUp</a> <a
 		class="navbarButton" href="Login.jsp">Login</a> <a
 		class="navbarButtonLogOut" href="LogOut.jsp">Log Out</a>
