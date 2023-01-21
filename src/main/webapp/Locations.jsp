@@ -9,12 +9,34 @@
 </head>
 <body>
 <%@include file="nav.html" %>
+	
+<div class="main-container">
+<div class="left-container">
+    <img src="usa2.png" alt="">
+</div>
+<div class="right-container">
+    <div class="image-box">
+    <img src="san_francisco.jpg" alt="">
+	<a href="#">San Francisco, CA</a>
+    </div>
+    <div class="image-box">
+        <img src="colorado.jpg" alt="">
+        <a href="#">Denver, CO</a>
+    </div>
+    <div class="image-box">
+        <img src="oregon.jpg" alt="">
+        <a href="#">Springfield, OR</a>
+    </div>
+    </div>
+</div>
+	
+	<!-- I left this all here just in case :-)
 	<div>
-
+	-->
 		<!-- <div>
 			<img id="locationimg"  src="map.jpg" alt="Map">
 		</div> -->
-	
+	<!--
 	<div>
 		<div class="boxes2">
 			<img class="cities" src="san francisco.jpg" style="width: 100%">
@@ -33,5 +55,6 @@
 		</div>
 	</div>
 	</div>
+	-->
 </body>
 </html>
