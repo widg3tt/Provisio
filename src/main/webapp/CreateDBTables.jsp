@@ -91,10 +91,10 @@
         }
          
         try{
-            String query1 = "CREATE TABLE Rooms(RoomId int NOT NULL, Size varchar(255) NOT NULL, NumberOfGuests int NOT NULL, " +
+            String query = "CREATE TABLE Rooms(RoomId int NOT NULL, Size varchar(255) NOT NULL, NumberOfGuests int NOT NULL, " +
        				 "Price double NOT NULL, HotelId int NOT NULL, PRIMARY KEY (RoomId), FOREIGN KEY (HotelId) REFERENCES Hotels (HotelId));"; 
             	
-            stmt.executeUpdate(query1);
+            stmt.executeUpdate(query);
             out.println("<b>Table Rooms Created</b><br />");
         }
         catch(SQLException e){

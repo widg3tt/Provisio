@@ -6,27 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html">
-
-<div class="navbar">
-	<img src="logo.png" class="navimg">
-	<div class="navtext">Provisio</div>
-	<a class="navbarButton" href="index.jsp">Home</a> <a
-		class="navbarButton" href="AboutUs.jsp">About Us</a> <a
-		class="navbarButton" href="ContactUs.jsp">Contact Us</a> <a
-		class="navbarButtonActive" href="Locations.jsp">Locations</a> <a
-		class="navbarButton" href="Registration.jsp">Register</a> <a
-		class="navbarButton" href="Reservation.jsp">Booking</a> <a
-		class="navbarButton" href="LookUp.jsp">Reservation LookUp</a> <a
-		class="navbarButton" href="Login.jsp">Login</a> <a
-		class="navbarButtonLogOut" href="LogOut.jsp">Log Out</a>
-</div>
 </head>
 <body>
+<%@include file="nav.html" %>
 	<div>
 
-		<div>
+		<!-- <div>
 			<img id="locationimg"  src="map.jpg" alt="Map">
-		</div>
+		</div> -->
 	
 	<div>
 		<div class="boxes2">
