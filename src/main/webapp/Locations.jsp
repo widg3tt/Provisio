@@ -16,7 +16,7 @@
 </div>
 <div class="right-container">
     <div class="image-box">
-    <img src="san_francisco.jpg" alt="">
+    <img src="san francisco.jpg" alt="">
 	<a href="#">San Francisco, CA</a>
     </div>
     <div class="image-box">
