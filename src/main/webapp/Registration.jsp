@@ -57,7 +57,7 @@
                 	%>	
                 	<div class="response">
                 		<h3 class="responseHeader">Congratulations<%=" " + user[0] + " " + user[1] + " "%> your account was created successfully!</h3><br />
-                		<a class="highlight" href="Login.jsp">Login</a>
+                	    <a class="highlight" href="Login.jsp">Login</a>
                 	</div>
                 	<% 
                 	}

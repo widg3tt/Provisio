@@ -27,6 +27,6 @@
   </context-param>
   <context-param>
   <param-name>dbPass</param-name>
-  <param-value>password</param-value>
+  <param-value>Password</param-value>
   </context-param>
 </web-app> 
