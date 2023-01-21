@@ -394,7 +394,80 @@ button {
   }
 }
 
+/*---------------------------------------------------------------------------------*/
 
+.main-container {
+    display: grid;
+    grid-template-columns: 66.67% 33.33%;
+}
+
+.left-container {
+    grid-column: 1 / 2;
+	margin-left: 5%;
+	margin-top: 10%;
+}
+
+.left-container img{
+    width: 70%;
+    height: 80%;
+}
+
+.right-container img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.right-container a{
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+}
+
+/*------------Boxes around the images-------------*/
+.right-container {
+    display: grid;
+    padding-top: 5%;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 50% 50%;
+    row-gap: 10px;
+    column-gap: 20px;
+    
+}
+
+.image-box:first-child {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.image-box:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 55%;
+}
+
+.image-box:nth-child(3) {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+}
+
+.image-box {
+    width: 33.33%;
+    height: 60%;
+    border: 2px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 80%;
+}
+
+
+
+
+/*-----------------------------------------------------*/
 
 /*
 color: #D6A800; gold
