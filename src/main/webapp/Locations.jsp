@@ -18,15 +18,15 @@
 <div class="right-container">
     <div class="image-box">
     <img src="san francisco.jpg" alt="">
-	<a href="#">San Francisco, CA</a>
+	<a href="Reservation.jsp">San Francisco, CA</a>
     </div>
     <div class="image-box">
         <img src="colorado.jpg" alt="">
-        <a href="#">Denver, CO</a>
+        <a href="Reservation.jsp">Denver, CO</a>
     </div>
     <div class="image-box">
         <img src="oregon.jpg" alt="">
-        <a href="#">Springfield, OR</a>
+        <a href="Reservation.jsp">Springfield, OR</a>
     </div>
     </div>
 </div>
