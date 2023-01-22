@@ -13,6 +13,7 @@
 <div class="main-container">
 <div class="left-container">
     <img src="usa2.png" alt="">
+    <p>Welcome to our luxurious hotel, located in the heart of the city. Our rooms are equipped<br> with all the amenities you need for a comfortable and relaxing stay. Take advantage of our<br/> on-site restaurant and fitness center, or explore the nearby shopping and dining options.<br/> Book your stay today and experience the best of city living!</p>	
 </div>
 <div class="right-container">
     <div class="image-box">
