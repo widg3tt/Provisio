@@ -5,10 +5,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.security.*;
+import javax.crypto.*;
 
 public class LoginBean {
 	
-	public String checkLogin(String email, String password) {
+	private static String algorithm = "DESede";
+    private static Key key = null;
+    private static Cipher cipher = null;
+    
+    private static String decrypt(byte[] encryptionBytes)throws Exception {
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] recoveredBytes =  cipher.doFinal(encryptionBytes);
+        String recovered =  new String(recoveredBytes);
+        return recovered;
+      }
+	
+	public String checkLogin(String email, String password) throws Exception {
 		
 		// Create variables for database connection
 		String dbUser = "root";
@@ -37,8 +50,7 @@ public class LoginBean {
 		}
     
 		//Attempt to retrieve user data from the table
-		try{ 
-    	
+		try{
 			rs = stmt.executeQuery("SELECT Email FROM Users WHERE Email = '" + email + "'" +
 			"AND Password = '" + password + "'");
 			if (rs.next()) {
