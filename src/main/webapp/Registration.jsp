@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Beans.RegistrationBean"%>
-
+<%@ page import="java.security.*, Beans.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,26 @@
                 String fName = request.getParameter("fName"); 
                 String lName = request.getParameter("lName"); 
                 String email = request.getParameter("email"); 
-                String password = request.getParameter("password"); 
+                String password = request.getParameter("password");
+                
+                // Encrypt password
+                String algorithm="";
+                byte[] unencodedPassword = password.getBytes();
+                MessageDigest md = null;
+                try {
+                md = MessageDigest.getInstance("MD5");
+                } catch (Exception e) {}
+                md.reset();
+                md.update(unencodedPassword);
+                byte[] encodedPassword = md.digest();
+                StringBuffer buf = new StringBuffer();
+                for (int i = 0; i < encodedPassword.length; i++) {
+                if (((int) encodedPassword[i] & 0xff) < 0x10) {
+                buf.append("0");
+                }
+                buf.append(Long.toString((int) encodedPassword[i] & 0xff, 16));
+                }
+                String passw=buf.toString(); 
                	
                 String available = newUser.checkUser(email);
                
@@ -39,7 +58,7 @@
                 }
                 
                 else if (available == "available") {
-                	newUser.setUser(fName, lName, email, password);
+                	newUser.setUser(fName, lName, email, passw);
                     String [] user = newUser.getUser(fName, lName);
                 	%>	
                 	<div class="response">
@@ -80,15 +99,20 @@
                 		</tr>
                 		<tr>
                 			<td>Password:</td>
-                			<td><input class="formInput" name="password" type="password" min="0" maxlength="20" required="required"> </td>
+                			<td><input class="formInput" name="password" type="password" min="0" maxlength="20" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required="required"> </td>
                 		</tr>
                     </table>
             	<div class="center">
                 	<button type='submit'>Register</button><br />  
                 	<a class="highlight" href="Login.jsp">Login</a>
+                	<div id="message">
+  						<p>Password must contain the following:</p>
+  						<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  						<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+ 					    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+ 					</div>
             	</div>
-        	
-    	</form>  
+    	</form>
     	<%
         }
     	%>

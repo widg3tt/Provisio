@@ -10,6 +10,7 @@
 
 <body>
 <%@include file="nav.html" %>
+<div class="container">
 	<div style="text-align: left">
 		<h1>About Us</h1>
 	</div>
@@ -45,5 +46,6 @@
 	<%
 	}
 	%>
+</div>
 </body>
 </html>

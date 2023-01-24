@@ -364,7 +364,6 @@ button {
 
 /* Style the container/contact section */
 .container {
-  font-size: 60px;
   border-radius: 5px;
   background-color: #fefbe9;
   padding: 10px;
@@ -464,7 +463,9 @@ button {
     height: 80%;
 }
 
-
+#message p {
+	font-size:9pt;
+}
 
 
 /*-----------------------------------------------------*/
