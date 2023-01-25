@@ -27,8 +27,8 @@
                 String email = request.getParameter("email"); 
                 String password = request.getParameter("password");
                 
-                // Encrypt password
-                /* String algorithm="";
+             	// MD5 hash password encryption
+                String algorithm="";
                 byte[] unencodedPassword = password.getBytes();
                 MessageDigest md = null;
                 try {
@@ -44,7 +44,7 @@
                 }
                 buf.append(Long.toString((int) encodedPassword[i] & 0xff, 16));
                 }
-                String passw=buf.toString();  */
+                String passw=buf.toString(); 
                	
                 String available = newUser.checkUser(email);
                
@@ -58,7 +58,7 @@
                 }
                 
                 else if (available == "available") {
-                	newUser.setUser(fName, lName, email, password);
+                	newUser.setUser(fName, lName, email, passw);
                     String [] user = newUser.getUser(fName, lName);
                 	%>	
                 	<div class="response">

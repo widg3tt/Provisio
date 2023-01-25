@@ -10,23 +10,31 @@ import javax.crypto.*;
 
 public class LoginBean {
 	
-	private static String algorithm = "DESede";
-    private static Key key = null;
-    private static Cipher cipher = null;
-    
-    private static String decrypt(byte[] encryptionBytes)throws Exception {
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] recoveredBytes =  cipher.doFinal(encryptionBytes);
-        String recovered =  new String(recoveredBytes);
-        return recovered;
-      }
-	
-	public String checkLogin(String email, String password) throws Exception {
+	public String checkLogin(String email, String password) {
 		
 		// Create variables for database connection
 		String dbUser = "root";
 		String dbPass = "Password";
 		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
+		
+		// MD5 hash password encryption
+        String algorithm="";
+        byte[] unencodedPassword = password.getBytes();
+        MessageDigest md = null;
+        try {
+        md = MessageDigest.getInstance("MD5");
+        } catch (Exception e) {}
+        md.reset();
+        md.update(unencodedPassword);
+        byte[] encodedPassword = md.digest();
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < encodedPassword.length; i++) {
+        if (((int) encodedPassword[i] & 0xff) < 0x10) {
+        buf.append("0");
+        }
+        buf.append(Long.toString((int) encodedPassword[i] & 0xff, 16));
+        }
+        String passw=buf.toString();
 		
 		//initialize variables 
 		Connection con = null;
@@ -50,9 +58,10 @@ public class LoginBean {
 		}
     
 		//Attempt to retrieve user data from the table
-		try{
+		try{ 
+    	
 			rs = stmt.executeQuery("SELECT Email FROM Users WHERE Email = '" + email + "'" +
-			"AND Password = '" + password + "'");
+			"AND Password = '" + passw + "'");
 			if (rs.next()) {
 				check = "loginSuccess";
 			}
