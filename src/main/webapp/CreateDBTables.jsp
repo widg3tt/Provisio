@@ -41,26 +41,6 @@
         catch(Exception e){
             out.println("<h1>Error connecting to database.</h1>");
         }
-            
-        try{
-            stmt.executeUpdate("DROP TABLE Amenities");
-            out.println("<b>Table Amenities Dropped</b><br />");
-            
-        }
-        catch(SQLException e){                
-            out.println("<b>Table Amenities does not exist</b><br />");
-        }
-            
-        try{
-            String query = "CREATE TABLE Amenities(AmenityId int NOT NULL, Name varchar(255) NOT NULL, " +
-                    "Cost double NOT NULL, ChargeRecurrence varchar(15) NOT NULL, PRIMARY KEY (AmenityId));";
-            	
-            stmt.executeUpdate(query);
-            out.println("<b>Table Amenities Created</b><br />");
-        }
-        catch(SQLException e){
-            out.println("<b>Table Amenities Creation failed</b><br />");
-        }
         
         try{                
             stmt.executeUpdate("DROP TABLE Hotels");
@@ -71,15 +51,35 @@
         }
         
         try{
-            String query = "CREATE TABLE Hotels(HotelId int NOT NULL, HotelName varchar(30) NOT NULL, Address varchar(255) NOT NULL, " +
+            String query = "CREATE TABLE Hotels(HotelID int NOT NULL, HotelName varchar(30) NOT NULL, Address varchar(255) NOT NULL, " +
        				 "NumberOfRooms int NOT NULL, PhoneNumber varchar(15) NOT NULL, " + 
-       				 		"PRIMARY KEY (HotelId));";
+       				 		"PRIMARY KEY (HotelID));";
             	
             stmt.executeUpdate(query);
             out.println("<b>Table Hotels Created</b><br />");
         }
         catch(SQLException e){
             out.println("<b>Table Hotels Creation failed</b><br />");
+        }
+        
+        try{
+            stmt.executeUpdate("DROP TABLE Amenities");
+            out.println("<b>Table Amenities Dropped</b><br />");
+            
+        }
+        catch(SQLException e){                
+            out.println("<b>Table Amenities does not exist</b><br />");
+        }
+            
+        try{
+            String query = "CREATE TABLE Amenities(AmenityID int NOT NULL, Name varchar(255) NOT NULL, " +
+                    "Cost double NOT NULL, ChargeRecurrence varchar(15) NOT NULL, PRIMARY KEY (AmenityID));";
+            	
+            stmt.executeUpdate(query);
+            out.println("<b>Table Amenities Created</b><br />");
+        }
+        catch(SQLException e){
+            out.println("<b>Table Amenities Creation failed</b><br />");
         }
         
         try{                
@@ -91,8 +91,8 @@
         }
          
         try{
-            String query = "CREATE TABLE Rooms(RoomId int NOT NULL, Size varchar(255) NOT NULL, NumberOfGuests int NOT NULL, " +
-       				 "Price double NOT NULL, HotelId int NOT NULL, PRIMARY KEY (RoomId), FOREIGN KEY (HotelId) REFERENCES Hotels (HotelId));"; 
+            String query = "CREATE TABLE Rooms(RoomID int NOT NULL, Size varchar(255) NOT NULL, NumberOfGuests int NOT NULL, " +
+       				 "Price double NOT NULL, HotelID int NOT NULL, PRIMARY KEY (RoomID), FOREIGN KEY (HotelID) REFERENCES Hotels (HotelID));"; 
             	
             stmt.executeUpdate(query);
             out.println("<b>Table Rooms Created</b><br />");
@@ -110,8 +110,9 @@
         }
             
         try{
-            String query = "CREATE TABLE Users(UserId int NOT NULL AUTO_INCREMENT, Email varchar(255) NOT NULL, Password varchar(50) NOT NULL, " + 
-                    "FirstName varchar(255) NOT NULL, LastName varchar(255) NOT NULL, LoyaltyPoints int NOT NULL, PRIMARY KEY (Email));";
+            String query = "CREATE TABLE Users(UserID int NOT NULL AUTO_INCREMENT, " +
+        			"Email varchar(255) NOT NULL, FirstName varchar(255) NOT NULL, LastName varchar(255) NOT NULL, " + 
+                    "Password varchar(50) NOT NULL, LoyaltyPoints int NOT NULL, PRIMARY KEY (UserID));";
             	
             stmt.executeUpdate(query);
             out.println("<b>Table Users Created</b><br />");
@@ -129,14 +130,13 @@
         }
             
         try{
-            String query = "CREATE TABLE Reservations(ReservationId int NOT NULL AUTO_INCREMENT, " +
-                    "CheckInDate DATE NOT NULL, CheckOutDate DATE NOT NULL, Points int NOT NULL, " +
-            		"Guests int NOT NULL, Amenities varchar(255), Nights int NOT NULL, CostPerNight double NOT NULL, " +
-            		"TotalCost double NOT NULL, HotelId int NOT NULL, Email varchar(255) NOT NULL, " +
-            		"RoomId int NOT NULL, PRIMARY KEY (ReservationId), " +
-                    "FOREIGN KEY (HotelId) REFERENCES Hotels (HotelId), " + 
-                    "FOREIGN KEY (Email) REFERENCES Users (Email), " + 
-                    "FOREIGN KEY (RoomId) REFERENCES Rooms (RoomId));";  
+            String query = "CREATE TABLE Reservations(ReservationID int NOT NULL AUTO_INCREMENT, " +
+                    "CheckInDate DATE NOT NULL, CheckOutDate DATE NOT NULL, Guests int NOT NULL, " +
+            		"Nights int NOT NULL, Points int NOT NULL, Amenities varchar(255), CostPerNight double NOT NULL, " +
+            		"TotalCost double NOT NULL, HotelID INT references Hotels(ID), RoomID INT references Rooms(ID), " +
+            		"Email varchar(255) references Users(Email), " +
+                    "PRIMARY KEY (ReservationID)" + 
+                    ") AUTO_INCREMENT=1000;";  
             	
             stmt.executeUpdate(query);
             out.println("<b>Table Reservations Created</b><br />");
