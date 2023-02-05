@@ -6,16 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.security.*;
-import javax.crypto.*;
 
 public class LoginBean {
 	
 	public String checkLogin(String email, String password) {
 		
 		// Create variables for database connection
-		String dbUser = "root";
-		String dbPass = "Password";
-		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
+  		String dbUser = "root";
+  		String dbPass = "Password";
+  		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
+  		
+  		// Initialize
+  
+        
+                     
+          
 		
 		// MD5 hash password encryption
         String algorithm="";
@@ -36,7 +41,7 @@ public class LoginBean {
         }
         String passw=buf.toString();
 		
-		//initialize variables 
+		// Initialize variables 
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -44,22 +49,10 @@ public class LoginBean {
         
 		try{
 			// Load DB Driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = dbURLandName + "?";
+			  Class.forName("com.mysql.jdbc.Driver");  
             
-			// Add data into DB
-			con = DriverManager.getConnection(url + "user=" + dbUser + "&" + "password=" + dbPass);             
-			stmt = con.createStatement();  
-			System.out.println("Connection Successful");
-		}
-		catch(Exception e){
-			System.out.println("Error connecting to the database.");
-			e.printStackTrace();
-		}
-    
-		//Attempt to retrieve user data from the table
-		try{ 
-    	
+            con = DriverManager.getConnection(dbURLandName , dbUser, dbPass); 
+            stmt = con.createStatement();  
 			rs = stmt.executeQuery("SELECT Email FROM Users WHERE Email = '" + email + "'" +
 			"AND Password = '" + passw + "'");
 			if (rs.next()) {
@@ -68,23 +61,18 @@ public class LoginBean {
 			else {
 				check = "loginFail";
 			}
-		
-		}
-		catch(SQLException e){
-			System.out.println("Error retrieving data");
-			e.printStackTrace();
-		}
-		finally {
-			try{
-				rs.close();
+            rs.close();
 				stmt.close();
 				con.close();
-			}
-			catch(SQLException e){
-				System.out.println("Connection close failed");
-				e.printStackTrace();
-			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			
+		}
+    
+		//Attempt to retrieve user data from the table
+		
+		
 		return check;
 	} 
 }

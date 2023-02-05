@@ -1,5 +1,6 @@
 package Beans;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class DataManager {
   		String dbPass = "Password";
   		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
   		
-  		// Tries to insert data into the table 
+  		// Insert data into the table 
     	Connection con = null;
        
         try{

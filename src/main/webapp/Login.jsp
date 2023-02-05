@@ -17,7 +17,7 @@
 	<div id="container">
 	
 	   <%
-        //get required values from parameters
+        // Get values from parameters
         if(request.getMethod().equals("POST")){
         	try{
         		// Create new user 
@@ -30,7 +30,7 @@
                 
                 if (session.getAttribute("sessionID") == null || session.getAttribute("sessionID") == "") {
                 	
-                	// if login user or password incorrect
+                	// If fields are incorrect
                 	if (available == "loginFail") {
                 		%>
                 		<div class="response">
@@ -42,7 +42,7 @@
                 
                 	else if (available == "loginSuccess") {
                 		session.setAttribute("sessionID", email);
-                		String redirectURL = "index.jsp";
+                		String redirectURL = "LoyaltyPoints.jsp";
                 	    response.sendRedirect(redirectURL);
                 		%>	
                 		<!-- <div class="response">

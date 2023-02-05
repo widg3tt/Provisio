@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +7,8 @@
     	<link href="provisio.css" type="text/css" rel="stylesheet"/>
     	<meta charset="UTF-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<meta http-equiv="Content-Type" content="text/html">
-	</head>
+    	<meta http-equiv="Content-Type" content="text/html">  
+        </head>
 	<body>
 	<%@include file="nav.html" %>
         <%
@@ -35,10 +35,11 @@
         		session.removeAttribute("TotalCost");
         	}
             %>
+            
                 <div width="98%">
                     <form class="Reservation" method='GET' action='ReservationSummary.jsp'>   
-                        <h1 class="formHeading">Book Your Trip Today!</h1> <hr /><br />
-                            <fieldset>
+                        <h1 class="formHeading">Book Your Trip Today!</h1><br />
+                            <fieldset style="background-color:  #F7E3B4;">
                                 <legend>Details</legend>
                                 <div class="boxes">
                                     <p>
@@ -72,24 +73,12 @@
                                         </label>
                                     </p>
                                 </div>
+                                <div id="drwho">
                                 <div class="boxes">
-                                    <p>
-                                        <label>Amenities<br />
-                                            <input type="checkbox" id="Wifi" name="Wifi" value="Wifi">
-                                            <label for="vehicle1"> Purchase Wi-Fi for $12.99?</label><br>
-                                            <input type="checkbox" id="Breakfast" name="Breakfast" value="Breakfast">
-                                            <label for="vehicle2"> Purchase Breakfast for $8.99 per person per night?</label><br>
-                                            <input type="checkbox" id="Parking" name="Parking" value="Parking">
-                                            <label for="vehicle3"> Purchase Parking for $19.99 per night?</label>
-                                            </select>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div class="boxes">
+                                    
                                     <p>
                                         <label>Check-in Date:<input id="CheckInField" type="date" min="1899-01-01" max="2023-12-01" name="CheckIn" required="required"></label>
-                                    </p>
-                                    <p>
+                                    
                                         <label>Check-out Date:<input id="CheckOutField" type="date" name="CheckOut" required="required"></label>
                                     </p>
                                     <script>
@@ -110,11 +99,28 @@
                                         document.getElementById("CheckInField").setAttribute("min", today);
                                         document.getElementById("CheckOutField").setAttribute("min", nextDay);
                                     </script>
+                                    
+                                    <br/><br/>
+                                 
+                                    <p>
+                                        <label>Amenities<br />
+                                            <input type="checkbox" id="Wifi" name="Wifi" value="Wifi">
+                                            <label for="vehicle1"> Purchase Wi-Fi for $12.99?</label><br>
+                                            <input type="checkbox" id="Breakfast" name="Breakfast" value="Breakfast">
+                                            <label for="vehicle2"> Purchase Breakfast for $8.99 per night?</label><br>
+                                            <input type="checkbox" id="Parking" name="Parking" value="Parking">
+                                            <label for="vehicle3"> Purchase Parking for $19.99 per night?</label>
+                                            </select>
+                                        </label>
+                                    </p>
+                                    
+                                </div>
+                                
+                                </div>
+                                <div style="float:right;margin-right:2%;margin-top:7%;">
+                                <button type='submit' class="button11">Book</button><br />
                                 </div>
                             </fieldset>
-                        <div class="center">
-                            <button type='submit'>Reserve</button><br />
-                        </div>
                     </form>  
                 </div>
             <%

@@ -38,7 +38,7 @@
 				to go much further. People at the heart of our business. Our team is
 				committed to extra thoughtful care and is passionate about
 				delivering an amazing hotel experience. While each of our team
-				members at Radisson Hotel Group plays a unique role, they all serve
+				members at Provisio Hotel Group plays a unique role, they all serve
 				as brand ambassadors working to deliver memorable moments and turn
 				guests into passionate brand advocates.</p>
 		</div>

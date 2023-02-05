@@ -1,5 +1,6 @@
 package Beans;
 
+
 import java.sql.*;
 
 public class RegistrationBean {
@@ -13,106 +14,66 @@ public class RegistrationBean {
   		
  		
     	// Tries to insert data into the table 
-    	Connection con = null;
-        Statement stmt = null;
+    	Connection con;
+        Statement stmt ;
             
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = dbURLandName + "?";
-                
-            con = DriverManager.getConnection(url + "user=" + dbUser + "&" + "password=" + dbPass);             
-            stmt = con.createStatement();  
-            System.out.println("Connection Successful");
+              Class.forName("com.mysql.jdbc.Driver");  
+            
+	con = DriverManager.getConnection(dbURLandName , dbUser, dbPass);             
+	stmt = con.createStatement();  
+          
+                    stmt.execute("INSERT INTO Users(Email, FirstName, LastName, Password, LoyaltyPoints) VALUES ('"+ email + "','" + fName + "' ,'" + lName + "' , '" + password + "', 0)"); 
+            
+                    stmt.close();
+                    con.close();
         }
-        catch(Exception e){
-            System.out.println("Error connecting to the database.");
-            e.printStackTrace();
-        }
-        
-        //Attempt to insert user data into table
-        try{
-            stmt.execute("INSERT INTO Users(Email, FirstName, LastName, Password, LoyaltyPoints) VALUES ('"+ email + "','" + fName + "' ,'" + lName + "' , '" + password + "', 0)"); 
-            System.out.println();
-        }
-        catch(SQLException e){
-            System.out.println("Error inserting data");
-            e.printStackTrace();
+        catch(    ClassNotFoundException | SQLException e){
+            System.out.println(e.getMessage());
             
         }
         
-        try{
-            stmt.close();
-            con.close();
-        }
-        catch(SQLException e){
-            System.out.println("Connection close failed");
-            e.printStackTrace();
-        }
+        
 	}
 	
-	public String[] getUser(String fName, String lName) {
+	public String[] getUser(String email) {
 		
 		// Create variables for database connection
   		String dbUser = "root";
   		String dbPass = "Password";
   		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
   		
-  		//initialize variables 
+  		// Initialize variables 
   		String [] user = new String[2];
-    	Connection con = null;
-        Statement stmt = null;
-        ResultSet fn = null;
-        ResultSet ln = null;
+    	Connection con;
+        Statement stmt;
+        ResultSet userdata ;
+       
             
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = dbURLandName + "?";
-                
-            con = DriverManager.getConnection(url + "user=" + dbUser + "&" + "password=" + dbPass);             
+           Class.forName("com.mysql.jdbc.Driver");  
+            
+            con = DriverManager.getConnection(dbURLandName , dbUser, dbPass);             
             stmt = con.createStatement();  
-        }
-        catch(Exception e){
-            System.out.println("Error connecting to the database.");
-            e.printStackTrace();
-        }
-        
-        //Attempt to retrieve user data from the table
-        try{ 
-        	
-            fn = stmt.executeQuery("SELECT FirstName FROM Users WHERE FirstName = '" + fName + "'");
-            while (fn.next()) {
-            	String firstName = fn.getString("FirstName");
-            	user[0] = firstName;
+             userdata = stmt.executeQuery("SELECT * FROM Users WHERE Email = '" + email + "'");
+            while (userdata.next()) {
+            	user[0] = userdata.getString("FirstName");
+            	user[1] = userdata.getString("LastName");
             }
             
-            ln = stmt.executeQuery("SELECT LastName FROM Users WHERE LastName = '" + lName + "'");
-            while (ln.next()) {
-            	String lastName = ln.getString("LastName");
-            	user[1] = lastName;
-            }
+            userdata.close();
+            stmt.close();
+            con.close();
+                
         }
-        catch(SQLException e){
-            System.out.println("Error retrieving data");
-            e.printStackTrace();
+        catch(Exception e){
+            System.out.println(e.getMessage());
+           
         }
-        finally {
-        	try{
-        		if (fn != null && ln != null) {
-        			fn.close();
-        			ln.close();
-        		}
-        		if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-        	}
-        	catch(SQLException e){
-        		System.out.println("Connection close failed");
-        		e.printStackTrace();
-        	}
-        }
+        
+      
+      
+       
         return user;
 	} 
 	
@@ -123,51 +84,39 @@ public class RegistrationBean {
 		String dbPass = "Password";
 		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
 		
-		//initialize variables 
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String check = "";
+		// Initialize variables 
+		Connection con ;
+		Statement stmt ;
+		ResultSet rs;
+		String check ;
         
 		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = dbURLandName + "?";
+                    Class.forName("com.mysql.jdbc.Driver");  
             
-			con = DriverManager.getConnection(url + "user=" + dbUser + "&" + "password=" + dbPass);             
-			stmt = con.createStatement();  
-		}
-		catch(Exception e){
-			System.out.println("Error connecting to the database.");
-			e.printStackTrace();
-		}
-    
-		//Attempt to retrieve user data from the table
-		try{ 
-    	
-			rs = stmt.executeQuery("SELECT Email FROM Users WHERE Email = '" + email + "'");
+            con = DriverManager.getConnection(dbURLandName , dbUser, dbPass);             
+          	stmt = con.createStatement();  
+                
+                rs = stmt.executeQuery("SELECT Email FROM Users WHERE Email = '" + email + "'");
 			if (rs.next()) {
 				check = "taken";
 			}
 			else {
 				check = "available";
-			}
-		
-		}
-		catch(SQLException e){
-			System.out.println("Error retrieving data");
-			e.printStackTrace();
-		}
-		finally {
-			try{
+                        }
 				rs.close();
 				stmt.close();
 				con.close();
-			}
-			catch(SQLException e){
-				System.out.println("Connection close failed");
-				e.printStackTrace();
-			}
+			
+                        
 		}
+		catch(Exception e){
+			check= e.getMessage();
+			return check;
+		}
+    
+		// User data from table
+		
+		
 		return check;
 	} 
 }

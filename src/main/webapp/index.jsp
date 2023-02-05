@@ -1,3 +1,4 @@
+<%@page import="Beans.ReservationSummaryBean"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
 </head>
 <body>
 <%@include file="nav.html" %>
+
 	<div class="image">
 		<img src="hotel.jpg" style="width: 100%;">
 		<div class="top-left">"I haven't been everywhere, but it's on my
@@ -69,5 +71,6 @@
 
 		</div>
 	</div>
+       
 </body>
 </html>

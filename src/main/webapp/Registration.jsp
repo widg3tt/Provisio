@@ -16,7 +16,7 @@
 	<%@include file="nav.html" %>
 		<div id="container">
         <%
-        //get required values from parameters
+        // Get parameters
         if(request.getMethod().equals("POST")){
         	try{
         		// Create new user 
@@ -35,6 +35,8 @@
                 md = MessageDigest.getInstance("MD5");
                 } catch (Exception e) {}
                 md.reset();
+                
+                 
                 md.update(unencodedPassword);
                 byte[] encodedPassword = md.digest();
                 StringBuffer buf = new StringBuffer();
@@ -47,7 +49,9 @@
                 String passw=buf.toString(); 
                	
                 String available = newUser.checkUser(email);
-               
+        
+                    
+                    
                 if (available == "taken") {
                 	%>
                 	<div class="response">
@@ -58,8 +62,11 @@
                 }
                 
                 else if (available == "available") {
+
                 	newUser.setUser(fName, lName, email, passw);
-                    String [] user = newUser.getUser(fName, lName);
+                      
+                    String [] user = newUser.getUser(email);
+                    
                 	%>	
                 	<div class="response">
                 		<h3 class="responseHeader">Congratulations<%=" " + user[0] + " " + user[1] + " "%> your account was created successfully!</h3><br />
@@ -73,7 +80,9 @@
         			%>
         			<div class="response">
         				<h3 class="responseHeader">Oops! Something went wrong.</h3><br />
-        				<a class="highlight" href="Registration.jsp">Try Again</a>
+        				<a class="highlight" href="Registration.jsp">
+                                            <%= e.getMessage()%>
+                                        </a>
         			</div>
         			<%
                 }

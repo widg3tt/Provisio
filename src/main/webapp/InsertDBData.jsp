@@ -56,7 +56,7 @@
       //Attempt to populate hotel table with data
         try{
             stmt.executeUpdate("INSERT INTO Hotels(HotelId, HotelName, Address, NumberOfRooms, PhoneNumber) VALUES (1, 'Hotel One', '123 4th St Springfield, ORE 97229', 1, '458-123-4567')"); 
-            stmt.executeUpdate("INSERT INTO Hotels(HotelId, HotelName, Address, NumberOfRooms, PhoneNumber) VALUES (2, 'Hotel Two', '456 7th St Dever, CO 80014', 1, '303-789-1011')"); 
+            stmt.executeUpdate("INSERT INTO Hotels(HotelId, HotelName, Address, NumberOfRooms, PhoneNumber) VALUES (2, 'Hotel Two', '456 7th St Denver, CO 80014', 1, '303-789-1011')"); 
             stmt.executeUpdate("INSERT INTO Hotels(HotelId, HotelName, Address, NumberOfRooms, PhoneNumber) VALUES (3, 'Hotel Three', '891 2nd St San Francisco, CA 91016', 1, '628-121-3141')"); 
             out.println("<b>Hotels Data Inserted</b><br />");
         }
