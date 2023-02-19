@@ -70,7 +70,7 @@ public class LoginBean {
 			
 		}
     
-		//Attempt to retrieve user data from the table
+		// Retrieve data
 		
 		
 		return check;

@@ -13,7 +13,7 @@ public class RegistrationBean {
   		String dbURLandName = "jdbc:mysql://localhost:3306/Provisio";
   		
  		
-    	// Tries to insert data into the table 
+    	// Insert data
     	Connection con;
         Statement stmt ;
             

@@ -13,7 +13,7 @@
 
 	</head>
 	<body>
-	<%@include file="nav.html" %>
+	<%@include file="nav.html" %> <!--Nav file-->
 		<div id="container">
         <%
         // Get parameters
@@ -54,7 +54,7 @@
                     
                 if (available == "taken") {
                 	%>
-                	<div class="response">
+                	<div class="response"> <!--Email already taken-->
         				<h3 class="responseHeader">That email is already in use</h3><br />
         				<a class="highlight" href="Registration.jsp">Try Again</a>
         			</div>
@@ -68,7 +68,7 @@
                     String [] user = newUser.getUser(email);
                     
                 	%>	
-                	<div class="response">
+                	<div class="response"> <!--Account made successfully-->
                 		<h3 class="responseHeader">Congratulations<%=" " + user[0] + " " + user[1] + " "%> your account was created successfully!</h3><br />
                 	    <a class="highlight" href="Login.jsp">Login</a>
                 	</div>
@@ -78,7 +78,7 @@
         		catch(Exception e){
         			e.printStackTrace();
         			%>
-        			<div class="response">
+        			<div class="response"> <!--Error-->
         				<h3 class="responseHeader">Oops! Something went wrong.</h3><br />
         				<a class="highlight" href="Registration.jsp">
                                             <%= e.getMessage()%>
@@ -93,7 +93,7 @@
         <form class="randl" method='post' action='Registration.jsp'>   
                 <h1 class="formHeading">Register</h1> <hr /><br />
                 
-                	<table>
+                	<table> <!--Table to take information-->
                 		<tr>
                 			<td>First Name:</td>
                 			<td><input class="formInput" name="fName" type="text" min="0" maxlength="15" required="required"> </td>
@@ -112,10 +112,10 @@
                 		</tr>
                     </table>
             	<div class="center">
-                	<button type='submit'>Register</button><br />  
+                	<button type='submit'>Register</button><br />   <!--Register button-->
                 	<a class="highlight" href="Login.jsp">Login</a>
                 	<div id="message">
-  						<p>Password must contain the following:</p>
+  						<p>Password must contain the following:</p> <!--Password requirements-->
   						<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
   						<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
  					    <p id="length" class="invalid">Minimum <b>8 characters</b></p>

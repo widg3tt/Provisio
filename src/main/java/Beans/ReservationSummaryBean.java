@@ -115,7 +115,7 @@ public class ReservationSummaryBean {
 	// Amenities prices are added
 	public double amenitiesPrice(String wifiSelected, String breakfastSelected, String parkingSelected, int totalDays) {
   		
-  		// Tries to insert data into the table 
+  		// Insert data
     	Connection con = null;
         Statement stmt = null;
         ResultSet rsWifiCost = null;
@@ -136,7 +136,7 @@ public class ReservationSummaryBean {
         }
 		
         
-        try {
+        try { // If amenities are selected
         	if (wifiSelected.equalsIgnoreCase("yes")) {
         		rsWifiCost = stmt.executeQuery("SELECT Cost FROM Amenities WHERE name = 'WI-FI'");
         			while(rsWifiCost.next()) {
@@ -163,7 +163,7 @@ public class ReservationSummaryBean {
                 	}
             }
         }
-        catch(SQLException e){
+        catch(SQLException e){ // Error message
 			System.out.println("Error retrieving data");
 			e.printStackTrace();
 		}
@@ -230,8 +230,26 @@ public class ReservationSummaryBean {
         
 		return roomCost;
 	}
+        
+        // Finds and returns cost of room
+        public double getRoomPrice2(int guests, int days){
+            double roomCost = 0.0;
+            if (guests == 1) {
+                roomCost = 115.00;
+            }
+            else if (guests == 2) {
+                roomCost = 115.00;
+            }
+            else {
+                roomCost = 150.00;
+            }
+            double total = roomCost * days;
+            double total2 = round(total, 2);
+        return total2;
+    }
+
 	
-	public double getGrandTotal(double amenities, double room) {
+	public double getGrandTotal(double amenities, double room) { // Total for the room and amenities
 		double grandTotal = amenities + room;
 		double val2 = round(grandTotal, 2);
 		return val2;
@@ -271,7 +289,7 @@ public class ReservationSummaryBean {
 		return cityId;
 	}
 	
-	public String getHotelName(int hotelId) {
+	public String getHotelName(int hotelId) { // Getting hotel name
 
 		Connection con ;
 		Statement stmt ;
@@ -308,7 +326,7 @@ public class ReservationSummaryBean {
 	
 	public int getroomId(int hotelId, String roomSize) {
 		  		
-		// Tries to insert data into the table 
+		// Insert data
 		Connection con ;
 		Statement stmt ;
 		        
@@ -338,7 +356,7 @@ public class ReservationSummaryBean {
 		return roomId;
 	}
 	
-	public String getRoomSize(int roomId) {
+	public String getRoomSize(int roomId) { // Getting room size
 
 		Connection con;
 		Statement stmt ;		        
@@ -365,7 +383,7 @@ public class ReservationSummaryBean {
 		
 				
 			
-		return roomSize;
+		return roomSize; // Outprint room size
 	}
 
 	public void setReservation(String bookDate, String arrive, String depart, int points, int guest, String amenities, int totalDays, double roomCost, double amenitiesCost, double totalCost, int hotelId, String email, int roomId) {
@@ -392,7 +410,7 @@ public class ReservationSummaryBean {
        
 	}
         
-        public int getReservationCount(String email)
+        public int getReservationCount(String email) // Reservations
         {
             Connection con ;
         Statement stmt ;
@@ -425,7 +443,7 @@ public class ReservationSummaryBean {
          
         }
 	
-	public String[][] getReservation(String email) {
+	public String[][] getReservation(String email) { // Calculations for reservation summary page
 		
     	Connection con ;
         Statement stmt ;
@@ -478,7 +496,7 @@ public class ReservationSummaryBean {
        return reservation;
 	}
 	
-	public void setLoyaltyPoints(int points, String email) { 
+	public void setLoyaltyPoints(int points, String email) { // Calculations for loyalty points page
 		
     	Connection con = null;
         Statement stmt = null;
@@ -550,10 +568,10 @@ public class ReservationSummaryBean {
 				        
 		
 		
-		return lp;
+		return lp; // Print 
 	}
 	
-	public int getReservationId(int hotelId, String email, int roomId) throws SQLException {
+	public int getReservationId(int hotelId, String email, int roomId) throws SQLException { // Calculations for Reservation ID
 		
 		Connection con = null;
 		Statement stmt = null;
@@ -595,7 +613,7 @@ public class ReservationSummaryBean {
 				e.printStackTrace();
 			}
 		}
-		return reservationId;
+		return reservationId; // Print ID
 	}
         
         public String[] getReservationByID(String ID) {

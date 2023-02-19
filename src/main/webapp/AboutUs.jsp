@@ -9,10 +9,10 @@
 </head>
 
 <body>
-<%@include file="nav.html" %>
+<%@include file="nav.html" %> <!--Nav file-->
 <div class="container">
 	<div style="text-align: left">
-		<h1>About Us</h1>
+		<h1>About Us</h1> <!--Header-->
 	</div>
 	<%
 	if (request.getMethod().equals("POST")) {
@@ -22,11 +22,11 @@
 	} else {
 	%>
 	<div>
-		<img src="hotel.jpg" class="aboutusimg"><br />
+		<img src="hotel.jpg" class="aboutusimg"><br /> <!--Image for about us page-->
 	</div>
 	<div class="aboutUs">
 		<div class="aboutBox">
-			<h3>Who is Provisio?</h3>
+			<h3>Who is Provisio?</h3> <!--Text for about us page-->
 			<br />
 			<p>Our way of being</p>
 			<br>

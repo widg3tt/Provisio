@@ -22,26 +22,27 @@
 <meta http-equiv="Content-Type" content="text/html">
 
 <body>
-	<%@include file="nav.html" %>
+	<%@include file="nav.html" %> <!--Nav file-->
 <%
-ReservationSummaryBean summary = new ReservationSummaryBean();
+ReservationSummaryBean summary = new ReservationSummaryBean(); // Using reservation summary bean for backend code
 %>
 	<%
-	if (session.getAttribute("sessionID") == null) {
+	if (session.getAttribute("sessionID") == null) { // Getting session ID
 	%>
 	<div class="response">
-        <h3 class="responseHeader">You are not logged in. Please login to continue.</h3><br />
+        <h3 class="responseHeader">You must be logged in to continue.</h3><br /> <!--Need to login-->
         <a class="highlight" href="Login.jsp">Login</a>
     </div>
 	<%
 	} 
 	else {
 %>
-      <div width="98%" class="randl">   
-     <form  method='GET' action='LookUp.jsp'>
+      <div width="98%">   
+     <form class="rand2" method='GET' action='LookUp.jsp'>
        Reservation ID :  <input type="text" class="formInput" name="reserve_id" id="reserve_id">
        <button type="submit" class="btn btn-success btn-sm"> Search </button>
-     </form>
+     </form> </br>
+     
     <%
 		if(request.getMethod().equals("GET")){
 			String reserve_id ="";
@@ -60,97 +61,80 @@ ReservationSummaryBean summary = new ReservationSummaryBean();
 	%>
 	
 	
-               
+                        <!--Table for the lookup reservation summary output-->
                    
-                        <h1 class="formHeading">Reservation Summary </h1><hr /><br />
+                        <h1 style="text-align:left;" class="formHeading">Reservation Summary </h1><br />
+                      
                         <table>
-                          
                             <tr>
-                                <td>Check-In Date: </td>
-                                <td>
+                                <tr>Check-In Date: </tr>
+                                <tr> <!--Printing results-->
                                 <% 
                                 out.print(rs_data[1]);
                                 %>
-                                </td>
+                                </tr>
                             </tr>
+                            <tr>|</tr>
                             <tr>
-                                <td>Check-out Date: </td>
-                                <td>
+                                <tr> Check-out Date: </tr>
+                                <tr> <!--Printing results-->
                                 <% 
                                 out.print(rs_data[2]);
                                 %>
-                                </td>
+                                </tr>
                             </tr>
+                            <tr>|</tr>
+                            <tr>
+                                <tr> Number of Guests: </tr>
+                                <tr> <!--Printing results-->
+                                <%
+                               out.print(rs_data[4]);
+                                %>
+                                </tr>
+                            </tr>
+                            <tr>|</tr>
+                            <tr>
+                                <tr> Nights: </tr>
+                                <tr> <!--Printing results-->
+                                <% 		
+                               out.print(rs_data[6]);
+                                %>		
+                                </tr>
+                            </tr>
+                            <br/><br/>
+                            <hr/>
+                        </table>
+                        
+                        <table align="left" style="margin-left:15%;"></form>
+                            <td style="font-size: 30px;">Details<br></br></td>
                             <tr>
                                 <td>Destination: </td>
-                                <td>
+                                <td> <!--Printing results-->
                                 <%
                                out.print(rs_data[9]);
                                 %> 
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td>Room Size: </td>
-                                <td>
+                                <td> <!--Printing results-->
                                 <%
                                out.print(rs_data[11]);
                                 %> 
                                 </td>
                             </tr>
                             <tr>
-                                <td>Points Earned: </td>
-                                <td>
-                                <%
-                               out.print(rs_data[3]);
-                                %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Number of Guests: </td>
-                                <td>
-                                <%
-                               out.print(rs_data[4]);
-                                %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Amenities : </td>
-                                <td>
-                                <%
-                               out.print(rs_data[5]);				
-                                %>
-                                </td>
-                            </tr>
-                            
-                           
-                            <tr>
-                                <td>Nights: </td>
-                                <td>
-                                <% 		
-                               out.print(rs_data[6]);
-                                %>		
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>Room Cost: </td>
-                                <td>
+                                <td> <!--Printing results-->
                                 $<%
                                out.print(rs_data[7]);
                                 %>				
                                 </td>
-                            </tr>
+                            </tr><br>
                             <tr>
-                                <td>Amenities Cost: </td>
-                                <td>
-                                $<%
-                                // Price will be true and added to total if there are any amenities
-                                out.print(rs_data[12]);
-                                %>			
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Cost: </strong></td>
-                                <td><strong>
+                                <td><br></br><strong>Total Cost: </strong></td>
+                                <td><br></br><strong> <!--Printing results-->
                                 $<%
                                    out.print(rs_data[8]);
 
@@ -158,21 +142,59 @@ ReservationSummaryBean summary = new ReservationSummaryBean();
                                 </strong></td>
                             </tr>
                         </table>
-                	
-                
-              
+                        <table align="right" style="margin-right:20%;">
+                            <tr>
+                                <td>Amenities : </td>
+                                <td> <!--Printing results-->
+                                <%
+                               out.print(rs_data[5]);				
+                                %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amenities Cost: </td>
+                                <td> <!--Printing results-->
+                                $<%
+                                // Price will be true and added to total if there are any amenities
+                                out.print(rs_data[12]);
+                                %>			
+                                </td>
+                            </tr>
+                            
+                            <p style="text-align:center">Amenities:</p>
+ 
+                            <tr>
+                                <td style="text-align:left;"><br></br>Guests Terms & Conditions:<br></br></td></tr>
+                            <tr>   
+                                <td style="text-align:left;text-indent: 25px;">    
+                                    Check-In Date: 3 p.m.</br></td></tr>
+                            <tr>    
+                                <td style="text-align:left;text-indent: 25px;">
+                                    Check-Out Date: 11 a.m.<br></br></td></tr>
+                            <tr>    
+                                <td style="text-align:left;text-indent: 25px;">    
+                                    Guests will be responsible for any</br></td></tr>
+                            <tr>    
+                                <td style="text-align:left;text-indent: 25px;">    
+                                    loss or damage to the property.
+                                </td></td>
+                            </tr>
+                           
+                        </table>
+             
+                        
 	        <%
                     }
-                    }catch(Exception e)
+                    }catch(Exception e) // Error
 {
 out.print(e.getMessage());
 }
 
 }
-    } %>
+    } %>         
               </div>    
                         <%
 }
-%>
+%> 
 </body>
 </html>

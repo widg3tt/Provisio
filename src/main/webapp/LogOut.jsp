@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Provisio - LogOut</title>
 </head>
-<body>
+<body> <!--Invalidate session for logout-->
 	<% 
 	session.invalidate();
 	response.sendRedirect("index.jsp"); 

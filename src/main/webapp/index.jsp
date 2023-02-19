@@ -9,10 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html">
 </head>
 <body>
-<%@include file="nav.html" %>
+<%@include file="nav.html" %> <!--Nav file-->
 
-	<div class="image">
-		<img src="hotel.jpg" style="width: 100%;">
+	<div class="image"> <!--Picture-->
+		<img src="hotel.jpg" style="width: 100%;"> <!--Text-->
 		<div class="top-left">"I haven't been everywhere, but it's on my
 			list"</div>
 		<div class="centered">Lorem ipsum dolor sit amet, consectetur
@@ -22,7 +22,7 @@
 	</div>
 
 	<div width="98%">
-		<div class="boxes">
+		<div class="boxes"> <!--Boxes to add more to the page-->
 			<h2>Lorem Ipsum 1</h2>
 			<br>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

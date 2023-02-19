@@ -9,18 +9,18 @@
 </head>
 
 <body>
-<%@include file="nav.html" %>
+<%@include file="nav.html" %> <!--Nav file-->
 <div class="container">
   <div style="text-align:left">
     <h1>Contact Us</h1>
   </div>
   <div class="row">
     <div class="column">
-      <img src="hotel.jpg" style="width:100%">
+      <img src="hotel.jpg" style="width:100%"> <!--Pic for Contact us page-->
     </div>
     <div class="column">
       <form>
-        <h3>We want to hear from you!</h3><br><br><br>
+        <h3>We want to hear from you!</h3><br><br><br> <!--Description-->
 		<p> Our Email: </p><br>
 		<p style="margin-left: 50px;">  provisio@gmail.com </p><br><br><br>
 		<p> Our Phone Numbers: </p><br>

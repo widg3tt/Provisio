@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<%@include file="nav.html" %>
+<%@include file="nav.html" %> <!--Nav file-->
 	<div id="container">
 	
 	   <%
@@ -33,14 +33,14 @@
                 	// If fields are incorrect
                 	if (available == "loginFail") {
                 		%>
-                		<div class="response">
+                		<div class="response"> <!--Error if login does not work-->
         					<h3 class="responseHeader">Error: Incorrect Username or Password</h3><br />
         					<a class="highlight" href="Login.jsp">Please Try Again</a>
         				</div>
         				<%
                 	}
                 
-                	else if (available == "loginSuccess") {
+                	else if (available == "loginSuccess") { // Login success
                 		session.setAttribute("sessionID", email);
                 		String redirectURL = "LoyaltyPoints.jsp";
                 	    response.sendRedirect(redirectURL);
@@ -55,7 +55,7 @@
         			}
                 else {
                 	%>	
-            		<div class="response">
+            		<div class="response"> <!--Logged in already-->
             			<h3 class="responseHeader">You are already logged in</h3><br />
             			<a class="highlight" href="index.jsp">Go Home</a><br />
             		</div>
@@ -66,7 +66,7 @@
         	catch(Exception e){
         		e.printStackTrace();
         		%>
-        		<div class="response">
+        		<div class="response"> <!--Error-->
         			<h3 class="responseHeader">Oops! Something went wrong.</h3><br />
         			<a class="highlight" href="Registration.jsp">Try Again</a>
         		</div>
@@ -83,7 +83,7 @@
 		<form class="randl" method="post" action='Login.jsp'>
 		<h1 class="formHeading">Login</h1><hr /><br /> 
 		
-			<table>
+			<table> <!--Table to take the information for login-->
 				<tr>
 					<td>Email: </td>
 					<td><input class="formInput" name="email" type="text" min="0" maxlength="30" required="required"> </td>
@@ -94,7 +94,7 @@
 				</tr>
 			</table>
 			<div class="center">
-                	<button type='submit'>Login</button><br />  
+                	<button type='submit'>Login</button><br /> <!--Button for login-->
                 	<a class="highlight" href="Registration.jsp">Register</a>
             </div>
 		</form>

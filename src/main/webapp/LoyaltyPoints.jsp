@@ -9,14 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html">
 </head>
 <body>
-<%@include file="nav.html" %>
-<%
-	if (session.getAttribute("sessionID") == null) {
+<%@include file="nav.html" %> <!--Nav file-->
+<% 
+	if (session.getAttribute("sessionID") == null) { // Must be logged in
 	%>
 	
         <% }else 
 {
-ReservationSummaryBean summary = new ReservationSummaryBean();
+ReservationSummaryBean summary = new ReservationSummaryBean(); // Importing reservation summary bean
 		String email = (String)session.getAttribute("sessionID");
 		
                     String[][] res = summary.getReservation(email);
@@ -31,7 +31,7 @@ ReservationSummaryBean summary = new ReservationSummaryBean();
 <font size="5">
 <table align="right">
 
-    <tr>
+    <tr> <!--Table for email and total points-->
 				<td>Email: </td>
 				<td>
 				<%out.print(email);%>
@@ -42,7 +42,7 @@ ReservationSummaryBean summary = new ReservationSummaryBean();
 				<td>
 				<%out.print(lp);%>
 				</td>
-                        </tr><!-- Table for email and total points -->
+                        </tr>
 </table> </font> <br><br><br><br><br>
 
 <div class=""> <!-- Table to hold the rest of the info -->

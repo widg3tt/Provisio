@@ -10,17 +10,17 @@
     	<meta http-equiv="Content-Type" content="text/html">  
         </head>
 	<body>
-	<%@include file="nav.html" %>
+	<%@include file="nav.html" %> <!--Nav file-->
         <%
-        if (session.getAttribute("sessionID") == null) {
+        if (session.getAttribute("sessionID") == null) { // Must login
             %>
                 <div class="response">
-        			<h3 class="responseHeader">You are not logged in. Please login to continue.</h3><br />
+        			<h3 class="responseHeader">You must be logged in to continue.</h3><br />
         			<a class="highlight" href="Login.jsp">Login</a>
         		</div>
             <%
         }
-        else {
+        else { // Get attributes
         	if (session.getAttribute("ReservationId") != null) {
         		session.removeAttribute("ReservationId");
         		session.removeAttribute("CheckInDate");
@@ -36,7 +36,7 @@
         	}
             %>
             
-                <div width="98%">
+                <div width="98%"> <!--Form for all the options-->
                     <form class="Reservation" method='GET' action='ReservationSummary.jsp'>   
                         <h1 class="formHeading">Book Your Trip Today!</h1><br />
                             <fieldset style="background-color:  #F7E3B4;">
@@ -81,7 +81,7 @@
                                     
                                         <label>Check-out Date:<input id="CheckOutField" type="date" name="CheckOut" required="required"></label>
                                     </p>
-                                    <script>
+                                    <script> <!--Script for the date input-->
                                         var today = new Date();
                                         var dd = today.getDate();
                                         var ddd = today.getDate() + 1;
@@ -118,7 +118,7 @@
                                 
                                 </div>
                                 <div style="float:right;margin-right:2%;margin-top:7%;">
-                                <button type='submit' class="button11">Book</button><br />
+                                <button type='submit' class="button11">Book</button><br /> <!--Book button-->
                                 </div>
                             </fieldset>
                     </form>  
