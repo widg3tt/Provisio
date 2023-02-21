@@ -156,7 +156,11 @@ ReservationSummaryBean summary = new ReservationSummaryBean(); // Using reservat
                                 <td> <!--Printing results-->
                                 $<%
                                 // Price will be true and added to total if there are any amenities
+                                if (rs_data[12] == "0.0"){
+                                	out.print("");
+                                } else {
                                 out.print(rs_data[12]);
+                                }
                                 %>			
                                 </td>
                             </tr>

@@ -635,6 +635,14 @@ public class ReservationSummaryBean {
            // rsres2 = stmt2.executeQuery("SELECT Address FROM Hotels WHERE HotelID = '2'"  ); 
            
             if (rsres.next()) {
+            	BigDecimal r7 = rsres.getBigDecimal("CostPerNight");
+            	r7.setScale(2, BigDecimal.ROUND_HALF_UP); // this does change bd
+            	r7 = r7.setScale(2, BigDecimal.ROUND_HALF_UP);
+            	BigDecimal r8 = rsres.getBigDecimal("TotalCost");
+            	r8.setScale(2, BigDecimal.ROUND_HALF_UP); // this does change bd
+            	r8 = r8.setScale(2, BigDecimal.ROUND_HALF_UP);
+            	Double r12 = round(rsres.getDouble("TotalCost") - rsres.getDouble("CostPerNight"),2);
+            	BigDecimal numBigDecimal = new BigDecimal(r12).setScale(2,BigDecimal.ROUND_HALF_UP);
                 
                
              //  ResultSet rs2 = stmt2.executeQuery("SELECT * FROM Hotels WHERE HotelID=2");
@@ -645,12 +653,12 @@ public class ReservationSummaryBean {
             	reservation[4] =  rsres.getString("Guests");
             	reservation[5] = rsres.getString("Amenities");
             	reservation[6] =  rsres.getString("Nights");
-            	reservation[7] =  rsres.getString("CostPerNight");
-            	reservation[8] =   rsres.getString("TotalCost");
+            	reservation[7] =  r7.toString();
+            	reservation[8] =  r8.toString();
             	reservation[9] = getHotelName(rsres.getInt("HotelID"));
             	reservation[10] =  rsres.getString("Email");
             	reservation[11] = getRoomSize(rsres.getInt("RoomId"));
-                reservation[12] = Integer.toString(rsres.getInt("TotalCost") - rsres.getInt("CostPerNight"));
+                reservation[12] = r12.toString();
                   
             }
            
