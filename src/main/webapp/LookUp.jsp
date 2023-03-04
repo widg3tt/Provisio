@@ -161,7 +161,7 @@ ReservationSummaryBean summary = new ReservationSummaryBean(); // Using reservat
                                 } else {
                                 out.print(rs_data[12]);
                                 }
-                                %>			
+                                %>				
                                 </td>
                             </tr>
                             

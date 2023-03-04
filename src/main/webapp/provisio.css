@@ -140,7 +140,7 @@ dl{
 }
 
 .active, .dot:hover {
-    background-color: #D6A800;
+    background-color: blue;
 }
 
 /* change animation type to slide?
@@ -281,8 +281,8 @@ td {
 } 
 
 .highlight:hover {
-    color: white;
-    background-color: #fdffe1; 
+    color: blue;
+    background-color: white; 
     padding: 2px;
 }
 
@@ -453,7 +453,7 @@ button {
     padding-top: 5%;
     grid-template-columns: 40% 60%;
     grid-template-rows: 50% 50%;
-    row-gap: 10px;
+    row-gap: 5px;
     column-gap: 20px;
     
 }
